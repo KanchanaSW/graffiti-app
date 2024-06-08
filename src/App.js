@@ -40,7 +40,7 @@ function App() {
   return (
     <div className="App">
       {isConfettiActive && <Confetti initialVelocityY={{ min: 15, max: 30 }} />}
-      {isMessageVisible && <div className="congratulations">Congratulations!</div>}
+      {isMessageVisible && <div className="congratulations">Good Luck!</div>}
       <button onClick={handleButtonClick} className="center-button">Click Me</button>
     </div>
   );
