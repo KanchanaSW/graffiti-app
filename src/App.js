@@ -1,23 +1,47 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import Confetti from 'react-confetti';
 import './App.css';
 
 function App() {
+  const [isConfettiActive, setIsConfettiActive] = useState(false);
+  const [isMessageVisible, setIsMessageVisible] = useState(false);
+
+  const disableScroll = () => {
+    document.documentElement.style.overflow = 'hidden';
+    document.body.scroll = 'no';
+  };
+
+  const enableScroll = () => {
+    document.documentElement.style.overflow = 'auto';
+    document.body.scroll = 'yes';
+  };
+
+  useEffect(() => {
+    if (isConfettiActive) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+
+    return () => {
+      enableScroll();
+    };
+  }, [isConfettiActive]);
+
+  const handleButtonClick = () => {
+    setIsConfettiActive(true);
+    setIsMessageVisible(true);
+    setTimeout(() => {
+      setIsConfettiActive(false);
+      setIsMessageVisible(false);
+    }, 15000); // Confetti duration: 15 seconds
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isConfettiActive && <Confetti initialVelocityY={{ min: 15, max: 30 }} />}
+      {isMessageVisible && <div className="congratulations">Congratulations!</div>}
+      <button onClick={handleButtonClick} className="center-button">Click Me</button>
     </div>
   );
 }

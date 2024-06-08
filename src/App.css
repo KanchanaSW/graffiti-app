@@ -1,38 +1,52 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  background-color: #282c34;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.congratulations {
+  font-size: 2em;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInOut 15s forwards;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
   }
-  to {
-    transform: rotate(360deg);
+  10% {
+    opacity: 1;
   }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.center-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1; /* Ensure it is above the confetti */
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.center-button:hover {
+  background-color: #21a1f1;
 }
